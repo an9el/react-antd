@@ -7,7 +7,7 @@ import type { FC } from 'react'
 
 import type { Todo } from '@/api'
 import { TodosApi } from '@/api'
-import { BaseApiConfig } from '@/comm/baseApi.config'
+import { BaseApiConfig } from '@/comm/base-api.config'
 import { MyAntdModal } from '@/components/MyAntdModal'
 import { sleep } from '@/utils'
 import { tableQueryFun } from '@/utils'
@@ -33,12 +33,14 @@ const columns: ProColumns<Todo>[] = [
       showSearch: true,
     },
     debounceTime: 500,
-    request: async () => [
-      { label: '全部', value: 'all' },
-      { label: '未解决', value: 'open' },
-      { label: '已解决', value: 'closed' },
-      { label: '解决中', value: 'processing' },
-    ],
+    request: async () => {
+      return Promise.resolve([
+        { label: '全部', value: 'all' },
+        { label: '未解决', value: 'open' },
+        { label: '已解决', value: 'closed' },
+        { label: '解决中', value: 'processing' },
+      ])
+    },
   },
   {
     title: 'status',
